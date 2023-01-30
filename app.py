@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request
-from models import StockItem, PurchaseOrder, DeliveryNote, Invoice
+from flask import  render_template, request
+
+from extensions import db
 
 
 # Home page
