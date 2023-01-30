@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 from models import StockItem, PurchaseOrder, DeliveryNote, Invoice
 
-app = Flask(__name__)
 
 # Home page
 @app.route("/")
@@ -14,6 +13,7 @@ def stock_items():
     items = StockItem.get_all()
     return render_template("stock_items.html", items=items)
 
+#route for getting and posting stock items
 @app.route("/add-stock-item", methods=["GET", "POST"])
 def add_stock_item():
     if request.method == "POST":
@@ -74,3 +74,8 @@ def add_invoice():
         invoice.save()
     orders = PurchaseOrder.get_all()
     return render_template("add_invoice.html", orders=orders)
+
+#reports
+@app.route('/reports')
+def reports():
+    items = StockItem.get_all()
